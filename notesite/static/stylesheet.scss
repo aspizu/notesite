@@ -1,0 +1,112 @@
+@use "sass:color";
+
+$bg: #ddeffa;
+$fg: #333232;
+$accent: #0000ff;
+
+* {
+  padding: 0;
+  margin: 0;
+  font: normal normal normal 12px 'Noto Sans', 'Inter', 'san-serif', 'monospace';
+  box-sizing: border-box;
+  color: $fg;
+}
+
+.row { display: flex; flex-direction: row; }
+.col { display: flex; flex-direction: column; }
+
+.row-right { margin-left: auto }
+.row.center { align-items: center }
+.col.cener { justify-content: center }
+
+.m0  { margin:   4px }
+.m1  { margin:   6px }
+.m2  { margin:   8px }
+.m3  { margin:  12px }
+.m4  { margin:  16px }
+.m5  { margin:  24px }
+.m6  { margin:  32px }
+.m7  { margin:  48px }
+.m8  { margin:  64px }
+.m9  { margin:  72px }
+.m10 { margin: 128px }
+
+.p0  { padding:   4px }
+.p1  { padding:   6px }
+.p2  { padding:   8px }
+.p3  { padding:  12px }
+.p4  { padding:  16px }
+.p5  { padding:  24px }
+.p6  { padding:  32px }
+.p7  { padding:  48px }
+.p8  { padding:  64px }
+.p9  { padding:  72px }
+.p10 { padding: 128px }
+
+.g0  { gap:   4px }
+.g1  { gap:   6px }
+.g2  { gap:   8px }
+.g3  { gap:  12px }
+.g4  { gap:  16px }
+.g5  { gap:  24px }
+.g6  { gap:  32px }
+.g7  { gap:  48px }
+.g8  { gap:  64px }
+.g9  { gap:  72px }
+.g10 { gap: 128px }
+
+html {
+  background: $bg;
+}
+
+body {
+  margin: auto;
+  width: 640px;
+}
+
+/* .posts {
+
+} */
+
+textarea {
+  $bg: mix($bg, #ffffff, 50%);
+  background: $bg;
+  resize: vertical;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  box-shadow: inset 0px 0px 1px 0px rgba(0, 0, 0, 0.1);
+
+  &:focus {
+    outline: 2px solid transparentize(#0000ff, 0.8);
+  }
+}
+
+button {
+  $bg: mix($bg, $fg, 90%);
+  background: $bg;
+  padding: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  box-shadow: inset 0px 1px 0px 0px mix($bg, #ffffff, 60%);
+
+  &:hover {
+    background: color.scale($bg, $lightness: -5%);
+  }
+
+  &:active {
+    background: color.scale($bg, $lightness: -15%);
+  }
+}
+
+.post {
+  $bg: mix($bg, $fg, 95%);
+  background: $bg;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  box-shadow: inset 0px 1px 0px 0px mix($bg, #ffffff, 60%);
+}
+
+.post > .created {
+  font-size: 10px;
+  color: mix($fg, $bg, 80%);
+}
