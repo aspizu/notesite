@@ -49,6 +49,8 @@ def api_post_new():
         return failure("MissingFieldContent")
     if len(content.strip()) == 0:
         return failure("ContentEmpty")
+    if len(content) > 256:
+        return failure("ContentTooLong")
     _, con = cursor()
     con.execute("INSERT INTO posts (created, content) VALUES (?, ?)", [now(), content])
     con.commit()
