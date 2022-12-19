@@ -60,12 +60,9 @@ html {
 
 body {
   margin: auto;
-  width: 640px;
+  max-width: 640px;
   background: white;
   height: 100%;
-  margin-top: 32px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
 }
 
 textarea {
@@ -154,4 +151,14 @@ button.primary {
 .textarea-error {
   color: red;
   font-size: 10px;
+}
+
+.main {
+  @extend .row;
+}
+
+@media (max-width: 640px) {
+  .main {
+    flex-direction: column;
+  }
 }

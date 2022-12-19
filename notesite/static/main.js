@@ -76,7 +76,7 @@ function Form(posts) {
 }
 
 function Main() {
-  const main = `<div class="main row g4 p4"></div>`
+  const main = `<div class="main g4 p4"></div>`
   main.posts = `<Posts() style="flex-grow: 2"></Posts>`
   main.form = `<{Form(main.posts)} style="flex-grow: 1"></Form>`
   main.append(main.posts, main.form)
