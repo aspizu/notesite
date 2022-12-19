@@ -1,5 +1,25 @@
 import { get, post, dateFromEpoch, strftime } from './jixen.js'
 
+function ValidatedTextArea(validator) {
+  let textArea = `<textarea></textarea>`
+  textArea.error = `<p class="textarea-error"></p>`
+  textArea.isValid = () => {
+    const error = validator(textArea.value)
+    if (error) {
+      textArea.classList.add('error')
+      textArea.error.textContent = error
+      return false
+    }
+    textArea.classList.remove('error')
+    textArea.error.textContent = ''
+    return true
+  }
+  ;`<{textArea} oninput={textArea.isValid()}></textArea>`
+  const div = `<div class="col">{textArea}{textArea.error}</div>`
+  div.textArea = textArea
+  return div
+}
+
 function Post(created, content) {
   const created_str =
     'on ' +
@@ -32,10 +52,18 @@ function Posts() {
 }
 
 function Form(posts) {
-  const textArea = `<textarea></textarea>`
+  const textArea = ValidatedTextArea((value) => {
+    if (value.length == 0) {
+      return 'Post content cannot be empty'
+    } else if (value.length > 256) {
+      return 'Post content cannot be longer than 256 characters'
+    }
+  })
   const submitButton = `<button class="primary" onclick={
-    post('/api/post/add', {content: textArea.value})
-    posts.render()
+    if (textArea.textArea.isValid()) {
+      post('/api/post/add', {content: textArea.textArea.value})
+      posts.render()
+    }
   }>"Post"</button>`
   const form = `
   <div class="form col">
